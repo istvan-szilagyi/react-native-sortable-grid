@@ -174,7 +174,7 @@ class SortableGrid extends Component {
           let blockPosition = block.origin
           let distance = this._getDistanceTo(blockPosition)
 
-          if (distance < closestDistance && distance < this.state.blockWidth && !this.items[index].props.fixed) {
+          if (distance < closestDistance && distance < this.state.blockWidth && !this.items[index].props.inactive) {
             closest = index
             closestDistance = distance
           }
