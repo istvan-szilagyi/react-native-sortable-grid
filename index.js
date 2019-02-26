@@ -136,7 +136,6 @@ class SortableGrid extends Component {
   componentWillReceiveProps = (properties) => this.handleNewProps(properties)
 
   handleNewProps = (properties) => {
-    this.state = { ... INITIAL_STATE };
     this._assignReceivedPropertiesIntoThis(properties)
     this._saveItemOrder(properties.children)
     this._removeDisappearedChildren(properties.children)
