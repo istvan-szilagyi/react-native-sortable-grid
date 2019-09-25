@@ -428,7 +428,7 @@ class SortableGrid extends Component {
         this.items.splice(index, 1)
       })
       this.setState({ blockPositions, blockPositionsSetCount }, () => {
-        this.items.forEach( (item, order) => {
+        this.state.blockPositions.forEach( (item, order) => {
           let blockIndex = _.findIndex(this.itemOrder, item => item.order === order)
           let x = (order * this.state.blockWidth) % (this.itemsPerRow * this.state.blockWidth)
           let y = Math.floor(order / this.itemsPerRow) * this.state.blockHeight
