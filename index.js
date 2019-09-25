@@ -142,7 +142,7 @@ class SortableGrid extends Component {
   }
 
   onStartDrag = (evt, gestureState) => {
-    if (this.state.activeBlock != null) {
+    if (this.state.activeBlock != null && this._getActiveBlock()) {
       let activeBlockPosition = this._getActiveBlock().origin
       let x = activeBlockPosition.x - gestureState.x0
       let y = activeBlockPosition.y - gestureState.y0
@@ -252,15 +252,17 @@ class SortableGrid extends Component {
   }
 
   returnBlockToOriginalPosition = () => {
-    let activeBlockCurrentPosition = this._getActiveBlock().currentPosition
-    activeBlockCurrentPosition.flattenOffset()
-    Animated.timing(
-      activeBlockCurrentPosition,
-      {
-        toValue: this._getActiveBlock().origin,
-        duration: this.activeBlockCenteringDuration
-      }
-    ).start()
+    if (this._getActiveBlock()) {
+      let activeBlockCurrentPosition = this._getActiveBlock().currentPosition
+      activeBlockCurrentPosition.flattenOffset()
+      Animated.timing(
+        activeBlockCurrentPosition,
+        {
+          toValue: this._getActiveBlock().origin,
+          duration: this.activeBlockCenteringDuration
+        }
+      ).start()
+    }
   }
 
   afterDragRelease = () => {
