@@ -18,22 +18,6 @@ const ACTIVE_BLOCK_CENTERING_DURATION = 200 // Milliseconds
 const DOUBLETAP_TRESHOLD              = 150 // Milliseconds
 const NULL_FN                         = () => {}
 
-const INITIAL_STATE = {
-  gridLayout: null,
-  blockPositions: [],
-  startDragWiggle: new Animated.Value(0),
-  activeBlock: null,
-  blockWidth: null,
-  blockHeight: null,
-  gridHeight: new Animated.Value(0),
-  blockPositionsSetCount: 0,
-  deleteModeOn: false,
-  deletionSwipePercent: 0,
-  deleteBlock: null,
-  deleteBlockOpacity: new Animated.Value(1),
-  deletedItems: []
-};
-
 class Block extends Component {
 
   render = () =>
@@ -118,7 +102,21 @@ class SortableGrid extends Component {
     this.tapIgnore         = false
     this.doubleTapWait     = false
 
-    this.state = { ...INITIAL_STATE };
+    this.state = {
+      gridLayout: null,
+      blockPositions: [],
+      startDragWiggle: new Animated.Value(0),
+      activeBlock: null,
+      blockWidth: null,
+      blockHeight: null,
+      gridHeight: new Animated.Value(0),
+      blockPositionsSetCount: 0,
+      deleteModeOn: false,
+      deletionSwipePercent: 0,
+      deleteBlock: null,
+      deleteBlockOpacity: new Animated.Value(1),
+      deletedItems: []
+    }
   }
 
   toggleDeleteMode = () => {
