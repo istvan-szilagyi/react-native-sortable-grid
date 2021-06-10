@@ -193,7 +193,8 @@ class SortableGrid extends Component {
           this._getBlock(closest).currentPosition,
           {
             toValue: this._getActiveBlock().origin,
-            duration: this.blockTransitionDuration
+            duration: this.blockTransitionDuration,
+            useNativeDriver: false,
           }
         ).start()
         let blockPositions = this.state.blockPositions
@@ -234,7 +235,11 @@ class SortableGrid extends Component {
     return new Promise( (resolve, reject) => {
       Animated.timing(
         this.state.deleteBlockOpacity,
-        { toValue: 0, duration: 2 * this.activeBlockCenteringDuration }
+        {
+          toValue: 0,
+          duration: 2 * this.activeBlockCenteringDuration,
+          useNativeDriver: false
+        }
       ).start(resolve)
     })
   }
@@ -244,7 +249,8 @@ class SortableGrid extends Component {
       this._getBlock(blockIndex).currentPosition,
       {
         toValue: position,
-        duration: this.blockTransitionDuration
+        duration: this.blockTransitionDuration,
+        useNativeDriver: false
       }
     ).start()
   }
@@ -257,7 +263,8 @@ class SortableGrid extends Component {
         activeBlockCurrentPosition,
         {
           toValue: this._getActiveBlock().origin,
-          duration: this.activeBlockCenteringDuration
+          duration: this.activeBlockCenteringDuration,
+          useNativeDriver: false
         }
       ).start()
     }
@@ -282,7 +289,6 @@ class SortableGrid extends Component {
   }
 
   assessGridSize = ({nativeEvent}) => {
-    console.log("Calculating grid size");
     if (this.props.itemWidth && this.props.itemWidth < nativeEvent.layout.width) {
       this.itemsPerRow = Math.floor(nativeEvent.layout.width / this.props.itemWidth)
       this.blockWidth = nativeEvent.layout.width / this.itemsPerRow
@@ -454,7 +460,8 @@ class SortableGrid extends Component {
         this.state.gridHeight,
         {
           toValue: this.gridHeightTarget,
-          duration: this.blockTransitionDuration
+          duration: this.blockTransitionDuration,
+          useNativeDriver: false
         }
       ).start()
     }
